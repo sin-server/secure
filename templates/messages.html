@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - SecureXchange</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Messages</h1>
+        <form method="POST" action="{{ url_for('send_message') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="mb-3">
+                <label for="receiver_id" class="form-label">Receiver ID</label>
+                <input type="text" class="form-control" id="receiver_id" name="receiver_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Message</label>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <h3 class="mt-5">Sent Messages</h3>
+        <ul class="list-group">
+            {% for message in sent_messages %}
+                <li class="list-group-item">
+                    <strong>To:</strong> {{ message.receiver_id }}<br>
+                    {{ message.content }}<br>
+                    <small>{{ message.timestamp }}</small>
+                </li>
+            {% else %}
+                <li class="list-group-item">No sent messages.</li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="mt-5">Received Messages</h3>
+        <ul class="list-group">
+            {% for message in received_messages %}
+                <li class="list-group-item">
+                    <strong>From:</strong> {{ message.sender_id }}<br>
+                    {{ message.content }}<br>
+                    <small>{{ message.timestamp }}</small>
+                </li>
+            {% else %}
+                <li class="list-group-item">No received messages.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
