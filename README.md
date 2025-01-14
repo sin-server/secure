@@ -1,7 +1,3 @@
-Great idea! A well-maintained `README.md` is essential for keeping track of the project's progress, features, and setup instructions. Here's a template for your `README.md` file, tailored to the **SecureXchange** project:
-
----
-
 ### **SecureXchange - Secure File and Payment Exchange Platform**
 
 SecureXchange is a secure platform for file and payment exchange, built with Flask. It provides user authentication, file upload/download, secure messaging, AI-powered file verification, and audit logging.
